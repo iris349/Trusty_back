@@ -9,4 +9,4 @@ app = FastAPI()
 
 @app.get("/")
 def root():
-    return {"message": "Trusty backend running"}
+    return {"message": "Trusty backend run"}
