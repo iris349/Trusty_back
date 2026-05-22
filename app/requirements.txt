@@ -1,4 +1,1 @@
-DATABASE_URL=mysql+pymysql://아이디:비밀번호@localhost:3306/trusty
-SECRET_KEY=아무거나긴문자열
-ALGORITHM=HS256
-ACCESS_TOKEN_EXPIRE_MINUTES=30
+DATABASE_URL=postgresql://postgres:1234@localhost:5432/trusty_db
