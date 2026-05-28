@@ -37,7 +37,7 @@ async function signup() {
       body: JSON.stringify({
         email: document.getElementById("signupEmail").value,
         password: document.getElementById("signupPassword").value,
-        nickname: document.getElementById("signupNickname").value
+        
       })
     });
 
