@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trusty 임시 프론트 UI</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">Trusty</div>
+      <p class="subtitle">AI 피싱/사기 분석 서비스</p>
+
+      <nav>
+        <button class="nav-btn active" data-page="dashboard">대시보드</button>
+        <button class="nav-btn" data-page="signup">회원가입</button>
+        <button class="nav-btn" data-page="login">로그인</button>
+        <button class="nav-btn" data-page="me">내 정보</button>
+        <button class="nav-btn" data-page="analysis">문자/메일 분석</button>
+        <button class="nav-btn" data-page="lookup">신고 이력 조회</button>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h1 id="pageTitle">대시보드</h1>
+          <p id="pageDesc">회의 설명용 임시 UI입니다.</p>
+        </div>
+        <div class="status">
+          <span id="serverStatus">API 연결 대기</span>
+        </div>
+      </header>
+
+      <section id="dashboard" class="page active">
+        <div class="cards">
+          <div class="card">
+            <h3>회원가입</h3>
+            <p>이메일, 비밀번호, 닉네임으로 사용자 생성</p>
+          </div>
+          <div class="card">
+            <h3>로그인</h3>
+            <p>JWT access token 발급</p>
+          </div>
+          <div class="card">
+            <h3>내 정보</h3>
+            <p>Authorization 헤더로 보호 API 접근</p>
+          </div>
+        </div>
+
+        <div class="flow">
+          <h2>현재 인증 흐름</h2>
+          <div class="flow-line">
+            <span>회원가입</span>
+            <span>→</span>
+            <span>로그인</span>
+            <span>→</span>
+            <span>토큰 저장</span>
+            <span>→</span>
+            <span>/users/me 호출</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="signup" class="page">
+        <div class="panel">
+          <h2>회원가입</h2>
+          <input id="signupEmail" placeholder="email@example.com" />
+          <input id="signupPassword" type="password" placeholder="비밀번호" />
+          <input id="signupNickname" placeholder="닉네임" />
+          <button onclick="signup()">회원가입 요청</button>
+          <pre id="signupResult"></pre>
+        </div>
+      </section>
+
+      <section id="login" class="page">
+        <div class="panel">
+          <h2>로그인</h2>
+          <input id="loginEmail" placeholder="email@example.com" />
+          <input id="loginPassword" type="password" placeholder="비밀번호" />
+          <button onclick="login()">로그인 요청</button>
+          <p class="hint">성공하면 access_token이 localStorage에 저장됩니다.</p>
+          <pre id="loginResult"></pre>
+        </div>
+      </section>
+
+      <section id="me" class="page">
+        <div class="panel">
+          <h2>내 정보 조회</h2>
+          <button onclick="getMe()">/users/me 호출</button>
+          <button class="secondary" onclick="logout()">토큰 삭제</button>
+          <pre id="meResult"></pre>
+        </div>
+      </section>
+
+      <section id="analysis" class="page">
+        <div class="panel">
+          <h2>문자/메일 분석 화면 예시</h2>
+          <textarea id="analysisText" placeholder="의심되는 문자나 메일 내용을 입력하세요."></textarea>
+          <button onclick="mockAnalysis()">분석하기</button>
+          <div id="analysisResult" class="mock-result hidden">
+            <strong>위험도: 높음</strong>
+            <p>긴급 결제, 링크 클릭 유도, 개인정보 요구 표현이 포함되어 있습니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="lookup" class="page">
+        <div class="panel">
+          <h2>신고 이력 조회 화면 예시</h2>
+          <input placeholder="이메일, 전화번호, 계좌번호 등 입력" />
+          <button onclick="mockLookup()">조회하기</button>
+          <pre id="lookupResult"></pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
