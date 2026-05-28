@@ -6,7 +6,8 @@ const titles = {
   login: ["로그인", "FastAPI /auth/login API와 연결됩니다."],
   me: ["내 정보", "JWT 토큰을 Authorization 헤더에 담아 /users/me를 호출합니다."],
   analysis: ["문자/메일 분석", "추후 LLM 분석 API와 연결할 화면 예시입니다."],
-  lookup: ["신고 이력 조회", "추후 신고 이력 조회 API와 연결할 화면 예시입니다."]
+  lookup: ["신고 이력 조회", "추후 신고 이력 조회 API와 연결할 화면 예시입니다."],
+  community: ["커뮤니티", "게시글 작성 테스트 화면입니다."]
 };
 
 document.querySelectorAll(".nav-btn").forEach((btn) => {
@@ -127,3 +128,31 @@ async function checkServer() {
 }
 
 checkServer();
+async function createCommunityPost() {
+
+  const result = document.getElementById("communityResult");
+
+  try {
+
+    const res = await fetch(`${API_BASE}/community/post`, {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json"
+      },
+
+      body: JSON.stringify({
+        title: document.getElementById("postTitle").value,
+        content: document.getElementById("postContent").value
+      })
+    });
+
+    const data = await res.json();
+
+    result.textContent = JSON.stringify(data, null, 2);
+
+  } catch (err) {
+
+    result.textContent = "요청 실패: " + err.message;
+  }
+}

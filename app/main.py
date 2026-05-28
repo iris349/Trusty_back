@@ -6,6 +6,8 @@ from app.models.report import Report
 from app.models.lookup import Lookup
 from app.models.post import Post
 from app.models.comment import Comment
+from app.routers import community
+from fastapi.middleware.cors import CORSMiddleware
 from app.database import Base
 from app.routers import auth, users
 
@@ -22,6 +24,7 @@ app.add_middleware(
 )
 app.include_router(auth.router)
 app.include_router(users.router)
+app.include_router(community.router)
 
 @app.get("/")
 def root():
