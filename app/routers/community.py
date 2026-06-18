@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app.database import get_db
@@ -73,3 +74,59 @@ def create_comment(
     db.refresh(new_comment)
 
     return new_comment
+
+@router.get(
+    "/comment/{post_id}",
+    response_model=list[CommentResponse]
+)
+def get_comments(
+    post_id: int,
+    db: Session = Depends(get_db)
+):
+
+    comments = db.query(Comment).filter(
+        Comment.post_id == post_id
+    ).all()
+
+    return comments
+
+from pydantic import BaseModel
+from datetime import datetime
+
+
+class CommentCreate(BaseModel):
+    post_id: int
+    content: str
+
+
+class CommentResponse(BaseModel):
+    id: int
+    post_id: int
+    user_id: int
+    content: str
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+# 글 삭제 기능
+@router.delete("/post/{post_id}")
+def delete_post(post_id: int, db: Session = Depends(get_db)):
+
+    post = db.query(Post).filter(
+        Post.id == post_id
+    ).first()
+
+    if not post:
+        raise HTTPException(
+            status_code=404,
+            detail="게시글이 존재하지 않습니다."
+        )
+
+    db.delete(post)
+
+    db.commit()
+
+    return {
+        "message": "게시글 삭제 완료"
+    }

@@ -178,19 +178,203 @@ async function getPosts() {
     data.forEach(post => {
 
       result.innerHTML += `
-        <div class="post-item">
-          <h3>${post.title}</h3>
-          <p>${post.content}</p>
-          <small>작성자: ${post.user_id}</small>
-          <hr>
-        </div>
-      `;
+  <div class="post-item">
 
+    <h3 onclick="getPostDetail(${post.id})"
+        style="cursor:pointer;color:blue;">
+
+      ${post.title}
+
+    </h3>
+
+    <div id="detail-${post.id}">
+    </div>
+
+    <hr>
+
+  </div>
+`;
     });
 
   } catch(err) {
 
     result.innerHTML = "목록 조회 실패";
+
+  }
+}
+
+async function getPostDetail(postId) {
+
+  const detail =
+    document.getElementById(`detail-${postId}`);
+
+  if (detail.innerHTML !== "") {
+
+    detail.innerHTML = "";
+
+    return;
+  }
+
+  try {
+
+    // 게시글 조회
+    const postRes = await fetch(
+      `${API_BASE}/community/post/${postId}`
+    );
+
+    const postData = await postRes.json();
+
+    // 댓글 조회
+    const commentRes = await fetch(
+      `${API_BASE}/community/comment/${postId}`
+    );
+
+    const comments = await commentRes.json();
+
+    let commentHtml = "";
+
+    comments.forEach(comment => {
+
+      commentHtml += `
+        <div style="
+          border-top:1px solid #ddd;
+          padding:5px;
+        ">
+          ${comment.content}
+        </div>
+      `;
+
+    });
+
+    detail.innerHTML = `
+
+      <div style="
+        background:#f5f5f5;
+        padding:10px;
+        border-radius:8px;
+        margin-top:10px;
+      ">
+
+        <p>${postData.content}</p>
+
+        <small>
+          작성자: ${postData.user_id}
+        </small>
+
+        <br>
+
+        <small>
+          작성일: ${postData.created_at}
+        </small>
+
+        <br><br>
+
+        <button
+          onclick="deletePost(${postData.id})"
+        >
+          삭제
+        </button>
+
+        <hr>
+
+        <h4>댓글</h4>
+
+        ${commentHtml}
+
+        <textarea
+          id="comment-input-${postId}"
+          placeholder="댓글 입력"
+        ></textarea>
+
+        <br>
+
+        <button
+          onclick="createComment(${postId})"
+        >
+          댓글 작성
+        </button>
+
+      </div>
+
+    `;
+
+  } catch(err) {
+
+    detail.innerHTML = "상세 조회 실패";
+
+  }
+}
+
+async function deletePost(postId) {
+
+  if (!confirm("정말 삭제하시겠습니까?")) {
+    return;
+  }
+
+  try {
+
+    const res = await fetch(
+      `${API_BASE}/community/post/${postId}`,
+      {
+        method: "DELETE"
+      }
+    );
+
+    const data = await res.json();
+
+    alert(data.message);
+
+    getPosts();
+
+  } catch(err) {
+
+    alert("삭제 실패");
+
+  }
+}
+
+async function createComment(postId) {
+
+  alert("댓글 버튼 클릭됨");
+
+  const content =
+    document.getElementById(
+      `comment-input-${postId}`
+    ).value;
+
+  console.log(content);
+
+  try {
+
+    const res = await fetch(
+      `${API_BASE}/community/comment`,
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+          post_id: postId,
+          content: content
+        })
+      }
+    );
+
+    console.log(res.status);
+
+    const data = await res.json();
+
+    console.log(data);
+
+    alert("댓글 저장 성공");
+
+  } catch(err) {
+
+    console.error(err);
+
+    alert("댓글 작성 실패");
 
   }
 }
