@@ -289,7 +289,7 @@ async function getPostDetail(postId) {
         <br>
 
         <button
-          onclick="createComment(${postId})"
+          id="comment-btn-${postId}"
         >
           댓글 작성
         </button>
@@ -297,6 +297,17 @@ async function getPostDetail(postId) {
       </div>
 
     `;
+
+  const btn =
+    document.getElementById(
+      `comment-btn-${postId}`
+    );
+
+  btn.addEventListener("click", () => {
+
+    createComment(postId);
+
+  });
 
   } catch(err) {
 
@@ -335,14 +346,10 @@ async function deletePost(postId) {
 
 async function createComment(postId) {
 
-  alert("댓글 버튼 클릭됨");
-
   const content =
     document.getElementById(
       `comment-input-${postId}`
     ).value;
-
-  console.log(content);
 
   try {
 
@@ -362,13 +369,13 @@ async function createComment(postId) {
       }
     );
 
-    console.log(res.status);
-
     const data = await res.json();
 
-    console.log(data);
+    document.getElementById(
+      `detail-${postId}`
+    ).innerHTML = "";
 
-    alert("댓글 저장 성공");
+    await getPostDetail(postId);
 
   } catch(err) {
 
@@ -378,3 +385,7 @@ async function createComment(postId) {
 
   }
 }
+
+window.getPostDetail = getPostDetail;
+window.getPosts = getPosts;
+window.createComment = createComment;
