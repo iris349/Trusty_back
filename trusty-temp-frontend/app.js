@@ -22,6 +22,10 @@ document.querySelectorAll(".nav-btn").forEach((btn) => {
 
     document.getElementById("pageTitle").innerText = titles[page][0];
     document.getElementById("pageDesc").innerText = titles[page][1];
+
+    if (page === "community") {
+  getPosts();
+}
   });
 });
 
@@ -151,8 +155,42 @@ async function createCommunityPost() {
 
     result.textContent = JSON.stringify(data, null, 2);
 
+    getPosts();
+
   } catch (err) {
 
     result.textContent = "요청 실패: " + err.message;
+  }
+}
+
+async function getPosts() {
+
+  const result = document.getElementById("postsList");
+
+  try {
+
+    const res = await fetch(`${API_BASE}/community/post`);
+
+    const data = await res.json();
+
+    result.innerHTML = "";
+
+    data.forEach(post => {
+
+      result.innerHTML += `
+        <div class="post-item">
+          <h3>${post.title}</h3>
+          <p>${post.content}</p>
+          <small>작성자: ${post.user_id}</small>
+          <hr>
+        </div>
+      `;
+
+    });
+
+  } catch(err) {
+
+    result.innerHTML = "목록 조회 실패";
+
   }
 }
