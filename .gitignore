@@ -1,3 +1,18 @@
-venv/
 __pycache__/
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual Environment
+venv/
+
+# Environment
 .env
+
+# IDE
+.vscode/
+.idea/
