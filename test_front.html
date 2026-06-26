@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Trusty 신고/조회 테스트</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      width: 700px;
+      margin: 40px auto;
+      background: #f5f6fa;
+    }
+    .box {
+      background: white;
+      padding: 24px;
+      margin-bottom: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    input, textarea, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      margin-bottom: 12px;
+      box-sizing: border-box;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    pre {
+      background: #111827;
+      color: #d1d5db;
+      padding: 16px;
+      border-radius: 8px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Trusty 신고/제보 기능 테스트</h1>
+
+  <div class="box">
+    <h2>1. 신종 사기 제보 등록</h2>
+
+    <select id="report_type">
+      <option value="email">이메일</option>
+      <option value="phone">전화번호</option>
+    </select>
+
+    <input id="target_value" placeholder="신고할 이메일 또는 전화번호" />
+    <input id="scam_type" placeholder="사기 유형 예: phishing, smishing" />
+    <textarea id="description" placeholder="상세 설명"></textarea>
+    <input id="evidence_url" placeholder="증거 URL 선택 입력" />
+
+    <button onclick="createReport()">제보 등록</button>
+
+    <pre id="report_result">결과가 여기에 표시됩니다.</pre>
+  </div>
+
+  <div class="box">
+    <h2>2. 신고된 이메일/전화번호 조회</h2>
+
+    <input id="lookup_target" placeholder="조회할 이메일 또는 전화번호" />
+    <button onclick="lookupTarget()">조회하기</button>
+
+    <pre id="lookup_result">조회 결과가 여기에 표시됩니다.</pre>
+  </div>
+
+  <script>
+    const API_BASE = "http://127.0.0.1:8000";
+
+    async function createReport() {
+      const data = {
+        report_type: document.getElementById("report_type").value,
+        target_value: document.getElementById("target_value").value,
+        scam_type: document.getElementById("scam_type").value,
+        description: document.getElementById("description").value,
+        evidence_url: document.getElementById("evidence_url").value || null
+      };
+
+      const response = await fetch(`${API_BASE}/reports/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+      document.getElementById("report_result").textContent =
+        JSON.stringify(result, null, 2);
+    }
+
+    async function lookupTarget() {
+      const target = document.getElementById("lookup_target").value;
+
+      const response = await fetch(
+        `${API_BASE}/lookup/?target=${encodeURIComponent(target)}`
+      );
+
+      const result = await response.json();
+      document.getElementById("lookup_result").textContent =
+        JSON.stringify(result, null, 2);
+    }
+  </script>
+
+</body>
+</html>
