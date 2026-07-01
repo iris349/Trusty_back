@@ -14,6 +14,8 @@ class Analysis(Base):
     input_text = Column(Text, nullable=False)
 
     risk_level = Column(String)
+    
+    score = Column(Integer)
 
     scam_type = Column(String)
 

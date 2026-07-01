@@ -11,6 +11,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.database import Base
 from app.routers import auth, users
 from app.routers import report, lookup
+from app.routers import analysis
 
 Base.metadata.create_all(bind=engine)
 
@@ -28,6 +29,7 @@ app.include_router(users.router)
 app.include_router(community.router)
 app.include_router(report.router)
 app.include_router(lookup.router)
+app.include_router(analysis.router)
 
 @app.get("/")
 def root():
