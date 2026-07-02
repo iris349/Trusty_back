@@ -3,10 +3,9 @@ from sqlalchemy.orm import Session
 
 from app.database import get_db
 from app.models.analysis import Analysis
-from app.schemas.analysis_schema import (
-    AnalysisCreate,
-    AnalysisResponse
-)
+from app.models.user import User
+from app.schemas.analysis_schema import AnalysisCreate, AnalysisResponse
+from app.core.security import get_current_user
 
 router = APIRouter(
     prefix="/analysis",
@@ -19,25 +18,23 @@ router = APIRouter(
 # ==========================
 @router.post("", response_model=AnalysisResponse)
 def create_analysis(
-    analysis: AnalysisCreate,
-    db: Session = Depends(get_db)
+    request: AnalysisCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
 ):
-
     new_analysis = Analysis(
-        user_id=1,      # 추후 JWT 연동
-        input_text=analysis.input_text,
+        user_id=current_user.id,
+        input_text=request.input_text,
 
-        # 임시 더미 데이터
-        risk_level="HIGH",
-        score=95,
-        scam_type="기관사칭",
-        reason="임시 분석 결과입니다."
+        # 임시 분석 결과
+        risk_level="LOW",
+        score=10,
+        scam_type="UNKNOWN",
+        reason="LLM 연동 전 임시 분석 결과입니다."
     )
 
     db.add(new_analysis)
-
     db.commit()
-
     db.refresh(new_analysis)
 
     return new_analysis
@@ -48,10 +45,12 @@ def create_analysis(
 # ==========================
 @router.get("", response_model=list[AnalysisResponse])
 def get_analyses(
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
 ):
-
-    analyses = db.query(Analysis).all()
+    analyses = db.query(Analysis).filter(
+        Analysis.user_id == current_user.id
+    ).all()
 
     return analyses
 
@@ -62,10 +61,12 @@ def get_analyses(
 # ==========================
 @router.get("/count")
 def get_analysis_count(
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
 ):
-
-    count = db.query(Analysis).count()
+    count = db.query(Analysis).filter(
+        Analysis.user_id == current_user.id
+    ).count()
 
     return {
         "count": count
@@ -78,11 +79,12 @@ def get_analysis_count(
 @router.get("/{analysis_id}", response_model=AnalysisResponse)
 def get_analysis(
     analysis_id: int,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
 ):
-
     analysis = db.query(Analysis).filter(
-        Analysis.id == analysis_id
+        Analysis.id == analysis_id,
+        Analysis.user_id == current_user.id
     ).first()
 
     if analysis is None:
