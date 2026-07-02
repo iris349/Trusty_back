@@ -8,6 +8,9 @@ from app.schemas.analysis_schema import (
     AnalysisResponse
 )
 
+# ⭐ 추가
+from app.services.llm_service import analyze_text
+
 router = APIRouter(
     prefix="/analysis",
     tags=["Analysis"]
@@ -23,21 +26,21 @@ def create_analysis(
     db: Session = Depends(get_db)
 ):
 
+    # ⭐ Gemini 분석
+    result = analyze_text(analysis.input_text)
+
     new_analysis = Analysis(
-        user_id=1,      # 추후 JWT 연동
+        user_id=1,      # 추후 JWT 적용 예정
         input_text=analysis.input_text,
 
-        # 임시 더미 데이터
-        risk_level="HIGH",
-        score=95,
-        scam_type="기관사칭",
-        reason="임시 분석 결과입니다."
+        risk_level=result["risk_level"],
+        score=result["score"],
+        scam_type=result["scam_type"],
+        reason=result["reason"]
     )
 
     db.add(new_analysis)
-
     db.commit()
-
     db.refresh(new_analysis)
 
     return new_analysis
