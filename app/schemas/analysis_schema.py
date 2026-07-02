@@ -2,26 +2,18 @@ from pydantic import BaseModel
 from datetime import datetime
 
 
-# 분석 요청
 class AnalysisCreate(BaseModel):
     input_text: str
 
 
-# 분석 응답
 class AnalysisResponse(BaseModel):
     id: int
-    user_id: int
-
+    user_id: int | None
     input_text: str
-
-    risk_level: str
-
-    score: int
-
-    scam_type: str
-
-    reason: str
-
+    risk_level: str | None
+    score: int | None
+    scam_type: str | None
+    reason: str | None
     created_at: datetime
 
     class Config:
