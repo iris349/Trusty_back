@@ -14,5 +14,7 @@ class Post(Base):
     title = Column(String, nullable=False)
 
     content = Column(Text, nullable=False)
+    
+    attachment = Column(String, nullable=True)
 
     created_at = Column(DateTime, default=datetime.utcnow)
