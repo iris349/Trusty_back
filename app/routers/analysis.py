@@ -1,3 +1,5 @@
+import json
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -6,7 +8,6 @@ from app.models.analysis import Analysis
 from app.models.user import User
 from app.schemas.analysis_schema import AnalysisCreate, AnalysisResponse
 from app.core.security import get_current_user
-
 from app.services.llm_service import analyze_text
 
 router = APIRouter(
@@ -25,7 +26,6 @@ def create_analysis(
     current_user: User = Depends(get_current_user)
 ):
 
-    # Gemini 분석
     result = analyze_text(request.input_text)
 
     new_analysis = Analysis(
@@ -35,14 +35,46 @@ def create_analysis(
         risk_level=result["risk_level"],
         score=result["score"],
         scam_type=result["scam_type"],
-        reason=result["reason"]
+        reason=result["reason"],
+
+        url_risk_score=result["url_risk_score"],
+        language_pattern_score=result["language_pattern_score"],
+        sender_reliability_score=result["sender_reliability_score"],
+        urgency_score=result["urgency_score"],
+
+        # 리스트 → 문자열로 저장
+        recommended_actions=json.dumps(
+            result["recommended_actions"],
+            ensure_ascii=False
+        )
     )
 
     db.add(new_analysis)
     db.commit()
     db.refresh(new_analysis)
 
-    return new_analysis
+    # 문자열 → 리스트로 변환해서 응답
+    return AnalysisResponse(
+        id=new_analysis.id,
+        user_id=new_analysis.user_id,
+        input_text=new_analysis.input_text,
+
+        risk_level=new_analysis.risk_level,
+        score=new_analysis.score,
+        scam_type=new_analysis.scam_type,
+        reason=new_analysis.reason,
+
+        url_risk_score=new_analysis.url_risk_score,
+        language_pattern_score=new_analysis.language_pattern_score,
+        sender_reliability_score=new_analysis.sender_reliability_score,
+        urgency_score=new_analysis.urgency_score,
+
+        recommended_actions=json.loads(
+            new_analysis.recommended_actions
+        ),
+
+        created_at=new_analysis.created_at
+    )
 
 
 # ==========================
@@ -58,12 +90,38 @@ def get_analyses(
         Analysis.user_id == current_user.id
     ).all()
 
-    return analyses
+    result = []
+
+    for analysis in analyses:
+        result.append(
+            AnalysisResponse(
+                id=analysis.id,
+                user_id=analysis.user_id,
+                input_text=analysis.input_text,
+
+                risk_level=analysis.risk_level,
+                score=analysis.score,
+                scam_type=analysis.scam_type,
+                reason=analysis.reason,
+
+                url_risk_score=analysis.url_risk_score,
+                language_pattern_score=analysis.language_pattern_score,
+                sender_reliability_score=analysis.sender_reliability_score,
+                urgency_score=analysis.urgency_score,
+
+                recommended_actions=json.loads(
+                    analysis.recommended_actions
+                ),
+
+                created_at=analysis.created_at
+            )
+        )
+
+    return result
 
 
 # ==========================
 # 분석 횟수 조회
-# 반드시 상세조회보다 위에!
 # ==========================
 @router.get("/count")
 def get_analysis_count(
@@ -101,4 +159,24 @@ def get_analysis(
             detail="분석 결과가 없습니다."
         )
 
-    return analysis
+    return AnalysisResponse(
+        id=analysis.id,
+        user_id=analysis.user_id,
+        input_text=analysis.input_text,
+
+        risk_level=analysis.risk_level,
+        score=analysis.score,
+        scam_type=analysis.scam_type,
+        reason=analysis.reason,
+
+        url_risk_score=analysis.url_risk_score,
+        language_pattern_score=analysis.language_pattern_score,
+        sender_reliability_score=analysis.sender_reliability_score,
+        urgency_score=analysis.urgency_score,
+
+        recommended_actions=json.loads(
+            analysis.recommended_actions
+        ),
+
+        created_at=analysis.created_at
+    )

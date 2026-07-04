@@ -9,20 +9,23 @@ class Analysis(Base):
 
     id = Column(Integer, primary_key=True, index=True)
 
-    # 분석을 수행한 사용자
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
 
-    # 사용자가 입력한 내용
     input_text = Column(Text, nullable=False)
 
-    # 분석 결과
+    # 종합 결과
     risk_level = Column(String)
-
     score = Column(Integer)
-
     scam_type = Column(String)
-
     reason = Column(Text)
 
-    # 생성 시간
+    # 세부 점수
+    url_risk_score = Column(Integer)
+    language_pattern_score = Column(Integer)
+    sender_reliability_score = Column(Integer)
+    urgency_score = Column(Integer)
+
+    # 권장 행동(JSON 문자열 저장)
+    recommended_actions = Column(Text)
+
     created_at = Column(DateTime, default=datetime.utcnow)
