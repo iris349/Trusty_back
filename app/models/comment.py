@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, Text, DateTime, ForeignKey
+from sqlalchemy.orm import relationship
 from datetime import datetime
 
 from app.database import Base
@@ -9,10 +10,34 @@ class Comment(Base):
 
     id = Column(Integer, primary_key=True, index=True)
 
-    post_id = Column(Integer, ForeignKey("posts.id"))
+    post_id = Column(
+        Integer,
+        ForeignKey("posts.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True
+    )
 
-    user_id = Column(Integer, ForeignKey("users.id"))
+    user_id = Column(
+        Integer,
+        ForeignKey("users.id"),
+        nullable=False,
+        index=True
+    )
 
     content = Column(Text, nullable=False)
 
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(
+        DateTime,
+        default=datetime.utcnow,
+        nullable=False
+    )
+
+    post = relationship(
+        "Post",
+        back_populates="comments"
+    )
+
+    user = relationship(
+        "User",
+        back_populates="comments"
+    )

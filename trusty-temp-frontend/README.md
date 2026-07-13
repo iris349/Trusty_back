@@ -33,3 +33,4 @@ app.add_middleware(
     allow_headers=["*"],
 )
 ```
+##7/13 이후 돌려볼때 프로젝트 파일에서 pip install python-multipart 실행 후 진행하세요.
