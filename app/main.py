@@ -12,6 +12,7 @@ from app.database import Base
 from app.routers import auth, users
 from app.routers import report, lookup
 from app.routers import analysis
+from fastapi.middleware.cors import CORSMiddleware
 
 Base.metadata.create_all(bind=engine)
 
@@ -34,3 +35,12 @@ app.include_router(analysis.router)
 @app.get("/")
 def root():
     return {"message": "Trusty backend run"}
+
+# (기존 코드 하단에 추가)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 모든 곳에서의 요청 허용
+    allow_credentials=True,
+    allow_methods=["*"],  # 모든 메서드(GET, POST 등) 허용
+    allow_headers=["*"],
+)
