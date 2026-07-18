@@ -1,30 +1,34 @@
 from fastapi import FastAPI
-from app.database import engine
+from fastapi.middleware.cors import CORSMiddleware
+
+# 데이터베이스 및 모델, 라우터 import
+from app.database import engine, Base
 from app.models.user import User
 from app.models.analysis import Analysis
 from app.models.report import Report
 from app.models.lookup import Lookup
 from app.models.post import Post
 from app.models.comment import Comment
-from app.routers import community
-from fastapi.middleware.cors import CORSMiddleware
-from app.database import Base
-from app.routers import auth, users
-from app.routers import report, lookup
-from app.routers import analysis
-from fastapi.middleware.cors import CORSMiddleware
+from app.routers import (
+    community, auth, users, report, lookup, analysis
+)
 
+# 데이터베이스 테이블 생성
 Base.metadata.create_all(bind=engine)
 
+# FastAPI 앱 생성
 app = FastAPI()
-from fastapi.middleware.cors import CORSMiddleware
+
+# --- CORS 설정: 여기서 딱 한 번만 정의합니다 ---
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # 모든 출처 허용
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],  # 모든 HTTP 메서드 허용
+    allow_headers=["*"],  # 모든 헤더 허용
 )
+
+# --- 라우터 등록 ---
 app.include_router(auth.router)
 app.include_router(users.router)
 app.include_router(community.router)
@@ -35,12 +39,3 @@ app.include_router(analysis.router)
 @app.get("/")
 def root():
     return {"message": "Trusty backend run"}
-
-# (기존 코드 하단에 추가)
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # 모든 곳에서의 요청 허용
-    allow_credentials=True,
-    allow_methods=["*"],  # 모든 메서드(GET, POST 등) 허용
-    allow_headers=["*"],
-)

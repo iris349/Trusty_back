@@ -125,14 +125,13 @@ def get_post(
 # ==========================
 @router.post("/comment", response_model=CommentResponse)
 def create_comment(
-    post_id: int,
     comment_data: CommentCreate,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
     post = (
         db.query(Post)
-        .filter(Post.id == post_id)
+        .filter(Post.id == comment_data.post_id)
         .first()
     )
 
@@ -143,16 +142,32 @@ def create_comment(
         )
 
     new_comment = Comment(
-        post_id=post_id,
+        post_id=comment_data.post_id,
         user_id=current_user.id,
         content=comment_data.content
     )
 
-    db.add(new_comment)
-    db.commit()
-    db.refresh(new_comment)
+    try:
+        db.add(new_comment)
+        db.commit()
+        db.refresh(new_comment)
+
+    except Exception:
+        db.rollback()
+        raise HTTPException(
+            status_code=500,
+            detail="댓글 저장 중 오류가 발생했습니다."
+        )
 
     return new_comment
+
+    #new_comment = Comment(
+        #post_id=post_id,
+        #user_id=current_user.id,
+        #content=comment_data.content
+    #)
+
+    
 
 
 # ==========================
