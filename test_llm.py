@@ -1,33 +1,118 @@
+import csv
+import json
+import time
+from pathlib import Path
+
 from app.services.llm_service import analyze_text
 
 
-def main():
-    test_messages = [
-        "오늘 저녁 7시에 역 앞에서 만나자.",
-        "검찰청입니다. 귀하의 계좌가 범죄에 연루되었습니다. 안전계좌로 송금하세요.",
-        "택배 주소가 잘못되었습니다. 아래 링크에서 주소를 수정하세요.",
-        "엄마 나 휴대폰이 고장 나서 친구 번호로 연락해. 급하게 돈 좀 보내줘.",
-    ]
+TEST_FILE = Path("data/test_data.csv")
+RESULT_FILE = Path("data/test_results.json")
 
-    for index, message in enumerate(test_messages, start=1):
-        print("\n" + "=" * 70)
-        print(f"[테스트 {index}]")
-        print(f"입력 문장: {message}")
-        print("-" * 70)
 
-        try:
-            result = analyze_text(message)
+def run_test():
+    total = 0
+    risk_correct = 0
+    scam_type_correct = 0
+    results = []
 
-            print("분석 결과:")
-            print(result)
+    with TEST_FILE.open(
+        "r",
+        encoding="utf-8-sig",
+        newline=""
+    ) as file:
+        reader = csv.DictReader(file)
 
-        except Exception as error:
-            print("분석 중 오류가 발생했습니다.")
-            print(f"오류 내용: {error}")
+        for row in reader:
+            input_text = row["input_text"].strip()
+            expected_risk = row["expected_risk_level"].strip()
+            expected_type = row["expected_scam_type"].strip()
 
-    print("\n" + "=" * 70)
-    print("모든 테스트가 완료되었습니다.")
+            try:
+                result = analyze_text(input_text)
+
+                predicted_risk = result["risk_level"]
+                predicted_type = result["scam_type"]
+
+                risk_match = predicted_risk == expected_risk
+                type_match = predicted_type == expected_type
+
+                total += 1
+
+                if risk_match:
+                    risk_correct += 1
+
+                if type_match:
+                    scam_type_correct += 1
+
+                test_result = {
+                    "id": row.get("id"),
+                    "input_text": input_text,
+                    "expected_risk_level": expected_risk,
+                    "predicted_risk_level": predicted_risk,
+                    "risk_correct": risk_match,
+                    "expected_scam_type": expected_type,
+                    "predicted_scam_type": predicted_type,
+                    "scam_type_correct": type_match,
+                    "score": result.get("score"),
+                    "reason": result.get("reason")
+                }
+
+                results.append(test_result)
+
+                print(
+                    f"[{total}] "
+                    f"risk: {expected_risk} → {predicted_risk} "
+                    f"{'✅' if risk_match else '❌'} | "
+                    f"type: {expected_type} → {predicted_type} "
+                    f"{'✅' if type_match else '❌'}"
+                )
+
+                # API 요청 제한 완화
+                time.sleep(1)
+
+            except Exception as error:
+                total += 1
+
+                results.append({
+                    "id": row.get("id"),
+                    "input_text": input_text,
+                    "error": str(error)
+                })
+
+                print(f"[{total}] 분석 실패: {error}")
+
+    risk_accuracy = risk_correct / total if total else 0
+    type_accuracy = scam_type_correct / total if total else 0
+
+    summary = {
+        "total": total,
+        "risk_correct": risk_correct,
+        "risk_accuracy": risk_accuracy,
+        "scam_type_correct": scam_type_correct,
+        "scam_type_accuracy": type_accuracy,
+        "results": results
+    }
+
+    RESULT_FILE.parent.mkdir(parents=True, exist_ok=True)
+
+    with RESULT_FILE.open(
+        "w",
+        encoding="utf-8"
+    ) as file:
+        json.dump(
+            summary,
+            file,
+            ensure_ascii=False,
+            indent=2
+        )
+
+    print("\n==============================")
+    print(f"전체 문장 수: {total}")
+    print(f"위험도 정확도: {risk_accuracy:.2%}")
+    print(f"사기 유형 정확도: {type_accuracy:.2%}")
+    print(f"결과 저장: {RESULT_FILE}")
 
 
 if __name__ == "__main__":
-    main()
+    run_test()
