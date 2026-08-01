@@ -1,259 +1,954 @@
 {
-  "total": 50,
-  "risk_correct": 0,
-  "risk_accuracy": 0.0,
-  "scam_type_correct": 0,
-  "scam_type_accuracy": 0.0,
+  "summary": {
+    "total_count": 50,
+    "success_count": 28,
+    "failure_count": 5,
+    "not_tested_count": 0,
+    "risk_correct_count": 25,
+    "type_correct_count": 25,
+    "all_correct_count": 25,
+    "risk_accuracy": 89.29,
+    "type_accuracy": 89.29,
+    "complete_accuracy": 89.29,
+    "progress_rate": 56.0
+  },
   "results": [
     {
       "id": "1",
       "input_text": "검찰입니다. 귀하의 계좌가 범죄에 이용되었습니다. 안전계좌로 즉시 송금하세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 40.31407099s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '40s'}]}}"
+      "expected_risk_level": "HIGH",
+      "predicted_risk_level": "HIGH",
+      "expected_scam_type": "기관사칭",
+      "predicted_scam_type": "기관사칭",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "HIGH",
+        "score": 95,
+        "scam_type": "기관사칭",
+        "reason": "검찰 기관을 사칭하여 계좌가 범죄에 연루되었다고 불안감을 조성하고 안전계좌로의 즉시 송금을 요구하는 전형적인 피싱 문장입니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 95,
+        "sender_reliability_score": 90,
+        "urgency_score": 90,
+        "recommended_actions": [
+          "지시된 계좌로 돈을 송금하지 마시고 즉시 응답을 중단하세요.",
+          "해당 기관의 공식 대표번호를 찾아 직접 사실 여부를 확인하세요.",
+          "피해가 발생했거나 의심되는 경우 경찰청(112) 또는 금융감독원(1332)에 신고하세요."
+        ]
+      }
     },
     {
       "id": "2",
       "input_text": "오늘 저녁 7시에 학교 앞에서 만나자.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 40.130465652s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '40s'}]}}"
+      "expected_risk_level": "LOW",
+      "predicted_risk_level": "LOW",
+      "expected_scam_type": "해당 없음",
+      "predicted_scam_type": "해당 없음",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "LOW",
+        "score": 0,
+        "scam_type": "해당 없음",
+        "reason": "입력된 문장은 일상적인 약속을 잡는 일반 대화 내용으로, 금전 요구나 개인정보 요구, 의심스러운 URL 등 피싱과 관련된 위험 요소가 전혀 확인되지 않습니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 0,
+        "sender_reliability_score": 0,
+        "urgency_score": 0,
+        "recommended_actions": [
+          "일상적인 메시지이므로 별도의 대응이나 신고가 필요하지 않습니다.",
+          "발신자가 모르는 번호인 경우 지인이 맞는지 신원을 확인하세요."
+        ]
+      }
     },
     {
       "id": "3",
       "input_text": "택배 배송 주소가 잘못되었습니다. 아래 링크를 눌러 수정해주세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 40.006537918s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '40s'}]}}"
+      "expected_risk_level": "MEDIUM",
+      "predicted_risk_level": "MEDIUM",
+      "expected_scam_type": "택배배송사칭",
+      "predicted_scam_type": "택배배송사칭",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "MEDIUM",
+        "score": 58,
+        "scam_type": "택배배송사칭",
+        "reason": "택배 배송 주소 오류를 명목으로 링크 클릭을 유도하는 전형적인 수법이 사용되었으나, 실제 URL 문자열이나 직접적인 금전 및 개인정보 요구가 문장에 명시되어 있지 않아 주의가 필요한 중간 위험도로 판단했습니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 60,
+        "sender_reliability_score": 50,
+        "urgency_score": 35,
+        "recommended_actions": [
+          "문자에 연결된 링크를 클릭하지 마시고 해당 택배사의 공식 앱이나 웹사이트를 통해 배송 상태를 확인하세요.",
+          "발신자의 신원이 불분명하므로 공식 고객센터 채널을 이용하여 사실 여부를 검증하세요.",
+          "연결되는 웹페이지가 있더라도 개인정보나 인증번호를 입력하지 마세요."
+        ]
+      }
     },
     {
       "id": "4",
       "input_text": "아들인데 휴대폰이 고장났어. 급하게 50만원만 보내줘.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 39.860625185s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '39s'}]}}"
+      "expected_risk_level": "HIGH",
+      "predicted_risk_level": "HIGH",
+      "expected_scam_type": "가족지인사칭",
+      "predicted_scam_type": "가족지인사칭",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "HIGH",
+        "score": 95,
+        "scam_type": "가족지인사칭",
+        "reason": "자녀(아들)를 사칭하며 휴대폰 고장을 이유로 50만원의 송금을 급하게 요구하는 전형적인 메신저 피싱 문장입니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 92,
+        "sender_reliability_score": 85,
+        "urgency_score": 88,
+        "recommended_actions": [
+          "절대로 요구하는 계좌로 돈을 송금하지 마세요.",
+          "아들의 기존 전화번호로 직접 통화하여 사실 여부를 확인하세요.",
+          "피싱 피해가 발생했거나 의심되는 경우 즉시 경찰청(112)이나 금융감독원(1332)에 신고하세요."
+        ]
+      }
     },
     {
       "id": "5",
       "input_text": "국민은행입니다. 신청하신 체크카드가 영업점에 도착했습니다.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 39.730101911s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '39s'}]}}"
+      "expected_risk_level": "LOW",
+      "predicted_risk_level": "LOW",
+      "expected_scam_type": "해당 없음",
+      "predicted_scam_type": "해당 없음",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "LOW",
+        "score": 10,
+        "scam_type": "해당 없음",
+        "reason": "입력된 문장에 금전 요구, 민감한 개인정보 입력, 의심스러운 URL 링크나 앱 설치 유도가 포함되어 있지 않고 일반적인 카드 도착 안내이므로 피싱 위험이 매우 낮습니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 5,
+        "sender_reliability_score": 15,
+        "urgency_score": 0,
+        "recommended_actions": [
+          "실제 본인이 신청한 체크카드가 맞는지 국민은행 공식 앱이나 공식 고객센터를 통해 확인해 보세요.",
+          "추후 추가 문자나 전화로 개인정보, 비밀번호, 송금 등을 요구하는 경우 절대 응하지 마세요."
+        ]
+      }
     },
     {
       "id": "6",
       "input_text": "저금리 대출 승인을 위해 보증금 30만원을 먼저 입금하세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 39.547819379s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '39s'}]}}"
+      "expected_risk_level": "HIGH",
+      "predicted_risk_level": "HIGH",
+      "expected_scam_type": "대출사기",
+      "predicted_scam_type": "대출사기",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "HIGH",
+        "score": 90,
+        "scam_type": "대출사기",
+        "reason": "저금리 대출 승인을 명목으로 30만원의 보증금을 먼저 입금하도록 직접적인 금전을 요구하고 있습니다. 대출 절차상 선입금을 요구하는 행위는 전형적인 대출사기 수법입니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 90,
+        "sender_reliability_score": 85,
+        "urgency_score": 60,
+        "recommended_actions": [
+          "어떠한 경우에도 대출 보증금 명목의 선입금 요구에 응하지 마세요.",
+          "해당 요청을 요구하는 자와의 연락을 중단하세요.",
+          "정식 금융회사인지 금융소비자 정보포털 파인(fine.fss.or.kr)에서 확인하거나 금융감독원(1332)에 문의하세요.",
+          "이미 돈을 입금했다면 즉시 경찰청(112) 또는 금융회사에 신고하여 지급정지를 요청하세요."
+        ]
+      }
     },
     {
       "id": "7",
       "input_text": "해외 결제가 감지되었습니다. 본인이 아니라면 인증번호를 입력하세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 39.247841644s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '39s'}]}}"
+      "expected_risk_level": "HIGH",
+      "predicted_risk_level": "HIGH",
+      "expected_scam_type": "결제사칭",
+      "predicted_scam_type": "결제사칭",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "HIGH",
+        "score": 85,
+        "scam_type": "결제사칭",
+        "reason": "해외 결제가 감지되었다는 핑계로 본인이 아닐 경우 인증번호 입력을 요구하는 전형적인 피싱 문장으로, 민감한 인증정보를 탈취하려는 정황이 명확하여 HIGH로 판단했습니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 85,
+        "sender_reliability_score": 70,
+        "urgency_score": 65,
+        "recommended_actions": [
+          "인증번호를 절대로 입력하거나 타인에게 알리지 마세요.",
+          "해당 문자의 안내를 따르지 말고 이용 중인 카드사나 금융사 공식 고객센터로 직접 해외 결제 여부를 확인하세요.",
+          "피해 발생 시 경찰청(112)이나 금융감독원(1332)에 즉시 신고하세요."
+        ]
+      }
     },
     {
       "id": "8",
       "input_text": "내일 회의는 오후 2시에 시작합니다.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 39.131035936s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '39s'}]}}"
+      "expected_risk_level": "LOW",
+      "predicted_risk_level": "LOW",
+      "expected_scam_type": "해당 없음",
+      "predicted_scam_type": "해당 없음",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "LOW",
+        "score": 0,
+        "scam_type": "해당 없음",
+        "reason": "입력된 문장은 내일 회의 일정을 안내하는 일반적인 대화 내용으로, 금전 요구, 개인정보 요구, 기관 사칭, 의심스러운 URL 등 피싱 관련 위험 요소가 전혀 존재하지 않습니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 0,
+        "sender_reliability_score": 0,
+        "urgency_score": 0,
+        "recommended_actions": [
+          "일상적인 안내 메시지이므로 별도의 보안 조치가 필요하지 않습니다.",
+          "평소 출처가 불분명한 메시지를 수신할 경우에만 주의를 기울이시기 바랍니다."
+        ]
+      }
     },
     {
       "id": "9",
       "input_text": "무료 쿠폰 이벤트에 당첨되었습니다. 자세한 내용은 홈페이지에서 확인하세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 39.00847097s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '39s'}]}}"
+      "expected_risk_level": "MEDIUM",
+      "predicted_risk_level": "LOW",
+      "expected_scam_type": "기타피싱",
+      "predicted_scam_type": "해당 없음",
+      "risk_correct": false,
+      "type_correct": false,
+      "all_correct": false,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "LOW",
+        "score": 20,
+        "scam_type": "해당 없음",
+        "reason": "무료 쿠폰 이벤트 당첨을 이유로 홈페이지 방문을 유도하지만, 실제 URL, 금전 요구, 기관 사칭, 개인정보 요구 등의 피싱 정황이 전혀 나타나지 않습니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 25,
+        "sender_reliability_score": 20,
+        "urgency_score": 0,
+        "recommended_actions": [
+          "이벤트 안내 수신 시 포털 사이트에서 해당 기업의 공식 홈페이지를 직접 검색하여 확인하세요.",
+          "출처가 불분명한 사이트 접속 시 개인정보나 금융정보를 입력하지 않도록 유의하세요."
+        ]
+      }
     },
     {
       "id": "10",
       "input_text": "보안 강화를 위해 원격제어 앱을 설치해주세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 38.895990407s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '38s'}]}}"
+      "expected_risk_level": "HIGH",
+      "predicted_risk_level": "HIGH",
+      "expected_scam_type": "악성앱설치유도",
+      "predicted_scam_type": "악성앱설치유도",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "HIGH",
+        "score": 88,
+        "scam_type": "악성앱설치유도",
+        "reason": "보안 강화를 이유로 원격제어 앱 설치를 요구하고 있으며, 이는 개인정보 탈취 및 기기 제어권 권한을 노리는 전형적인 피싱 수법입니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 85,
+        "sender_reliability_score": 80,
+        "urgency_score": 45,
+        "recommended_actions": [
+          "요구하는 원격제어 앱을 절대로 설치하지 마세요.",
+          "이미 앱을 설치했다면 스마트폰을 비행기 모드로 전환하거나 전원을 끄고 즉시 앱을 삭제하세요.",
+          "관련 기관의 공식 대표번호로 직접 전화하여 사실 여부를 확인하세요.",
+          "피해가 의심될 경우 경찰청(112) 또는 금융감독원(1332)에 신고하세요."
+        ]
+      }
     },
     {
       "id": "11",
       "input_text": "경찰청입니다. 귀하의 명의로 개설된 대포통장이 발견되었습니다. 담당 수사관에게 즉시 연락하세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 38.779369267s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '38s'}]}}"
+      "expected_risk_level": "HIGH",
+      "predicted_risk_level": "HIGH",
+      "expected_scam_type": "기관사칭",
+      "predicted_scam_type": "기관사칭",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "HIGH",
+        "score": 90,
+        "scam_type": "기관사칭",
+        "reason": "경찰청을 사칭하여 대포통장 개설 등 수사 관련 표현으로 불안감을 조성하고, 즉시 연락을 취하도록 행동을 강요하는 전형적인 보이스피싱 패턴입니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 88,
+        "sender_reliability_score": 85,
+        "urgency_score": 85,
+        "recommended_actions": [
+          "문자 내용에 응하지 말고 안내된 수사관이나 연락처로 절대 연락하지 마세요.",
+          "사실 확인이 필요한 경우 경찰청 공식 대표번호(112)로 직접 확인하세요.",
+          "어떠한 경우에도 개인정보, 계좌번호, 비밀번호 등을 전달하지 마세요."
+        ]
+      }
     },
     {
       "id": "12",
       "input_text": "주문하신 운동화가 오늘 오후 배송될 예정입니다.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 38.675543672s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '38s'}]}}"
+      "expected_risk_level": "LOW",
+      "predicted_risk_level": "LOW",
+      "expected_scam_type": "해당 없음",
+      "predicted_scam_type": "해당 없음",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "LOW",
+        "score": 5,
+        "scam_type": "해당 없음",
+        "reason": "입력된 문장은 주문한 운동화의 배송 예정 시간을 안내하는 일반적인 문장으로, 금전이나 개인정보 요구, 출처 불분명한 URL 등이 포함되어 있지 않아 피싱 정황이 없습니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 5,
+        "sender_reliability_score": 10,
+        "urgency_score": 5,
+        "recommended_actions": [
+          "실제 본인의 상품 주문 내역과 배송 예정 정보가 일치하는지 확인하세요.",
+          "향후 개인정보나 금전 요구, 출처가 불분명한 링크가 포함된 메시지를 받을 경우 주의하세요."
+        ]
+      }
     },
     {
       "id": "13",
       "input_text": "통관 정보가 누락되어 해외 배송이 보류되었습니다. 수취인 정보를 확인해주세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 38.530443491s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '38s'}]}}"
+      "expected_risk_level": "MEDIUM",
+      "predicted_risk_level": "MEDIUM",
+      "expected_scam_type": "택배배송사칭",
+      "predicted_scam_type": "택배배송사칭",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "MEDIUM",
+        "score": 52,
+        "scam_type": "택배배송사칭",
+        "reason": "해외 배송 보류를 이유로 수취인 정보 확인을 유도하는 전형적인 배송 사칭 피싱의 표현을 사용하고 있으나, 문장에 직접적인 URL이나 민감정보 요구 정황은 나타나지 않아 주의가 필요한 상태로 판단했습니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 55,
+        "sender_reliability_score": 50,
+        "urgency_score": 45,
+        "recommended_actions": [
+          "이용 중인 배송업체나 관세청 공식 홈페이지를 통해 직접 통관 상태를 확인하세요.",
+          "출처가 불분명한 문자 안내에 따라 개인정보를 제공하지 않도록 주의하세요.",
+          "추후 URL 연결이나 개인정보 입력 요구가 발생하더라도 응하지 마세요."
+        ]
+      }
     },
     {
       "id": "14",
       "input_text": "팀장님인데 회의 중이라 통화가 어려워. 편의점에서 상품권 30만원어치 구매해서 번호 보내줘.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 38.414270287s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '38s'}]}}"
+      "expected_risk_level": "HIGH",
+      "predicted_risk_level": "HIGH",
+      "expected_scam_type": "가족지인사칭",
+      "predicted_scam_type": "가족지인사칭",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "HIGH",
+        "score": 92,
+        "scam_type": "가족지인사칭",
+        "reason": "직장 상사(팀장)를 사칭하여 회의 중이라는 핑계로 통화를 회피하고 편의점 상품권 구매 후 핀번호 전송을 요구하는 전형적인 메신저 피싱 문장입니다. 문장 내에 URL은 없으나 금전적 요구 정황이 명확하므로 위험도가 매우 높습니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 90,
+        "sender_reliability_score": 85,
+        "urgency_score": 75,
+        "recommended_actions": [
+          "상품권 구매 및 번호 전송 요구에 절대 응하지 마세요.",
+          "기존에 알고 있는 팀장님의 실제 연락처로 직접 전화하여 사실 여부를 확인하세요.",
+          "피싱이 의심되는 경우 경찰청(112)이나 금융감독원(1332)에 신고하세요."
+        ]
+      }
     },
     {
       "id": "15",
       "input_text": "카카오뱅크입니다. 이번 달 이자 지급 내역을 앱에서 확인할 수 있습니다.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 38.30055341s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '38s'}]}}"
+      "expected_risk_level": "LOW",
+      "predicted_risk_level": "LOW",
+      "expected_scam_type": "해당 없음",
+      "predicted_scam_type": "해당 없음",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "LOW",
+        "score": 5,
+        "scam_type": "해당 없음",
+        "reason": "해당 문장은 카카오뱅크의 일반적인 이자 지급 안내로, 의심스러운 URL 접속 유도, 금전 요구, 개인정보 요청 등의 피싱 정황이 발견되지 않았습니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 5,
+        "sender_reliability_score": 10,
+        "urgency_score": 0,
+        "recommended_actions": [
+          "필요시 카카오뱅크 공식 애플리케이션을 직접 실행하여 내역을 확인하세요.",
+          "출처가 불분명한 문자를 수신할 경우 공식 채널을 통해 발신 여부를 확인하세요."
+        ]
+      }
     },
     {
       "id": "16",
       "input_text": "신용등급과 관계없이 대출 가능합니다. 진행 비용을 먼저 입금하시면 즉시 승인됩니다.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 38.127283123s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '38s'}]}}"
+      "expected_risk_level": "HIGH",
+      "predicted_risk_level": "HIGH",
+      "expected_scam_type": "대출사기",
+      "predicted_scam_type": "대출사기",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "HIGH",
+        "score": 90,
+        "scam_type": "대출사기",
+        "reason": "신용등급에 상관없는 대출을 조건으로 진행 비용 선입금을 직접 요구하고 있어 전형적인 대출사기 정황으로 판단됩니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 92,
+        "sender_reliability_score": 75,
+        "urgency_score": 60,
+        "recommended_actions": [
+          "진행 비용이나 수수료 명목의 선입금 요구에 절대 응하지 마세요.",
+          "해당 발신자와의 연락을 중단하고 개인정보를 제공하지 마세요.",
+          "의심되는 경우 금융감독원(1332) 또는 경찰청(112)에 신고하세요."
+        ]
+      }
     },
     {
       "id": "17",
       "input_text": "등록하지 않은 카드로 86만원이 결제되었습니다. 취소하려면 본인 인증을 진행하세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 37.845940422s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '37s'}]}}"
+      "expected_risk_level": "HIGH",
+      "predicted_risk_level": "HIGH",
+      "expected_scam_type": "결제사칭",
+      "predicted_scam_type": "결제사칭",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "HIGH",
+        "score": 85,
+        "scam_type": "결제사칭",
+        "reason": "등록하지 않은 카드로 86만원이 결제되었다며 취소를 빌미로 본인 인증을 요구하는 전형적인 결제 사칭 수법입니다. 존재하지 않는 결제 내역으로 불안감을 조성하여 민감한 본인 인증 정보를 탈취하려는 위험성이 높은 문장입니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 85,
+        "sender_reliability_score": 80,
+        "urgency_score": 75,
+        "recommended_actions": [
+          "요구하는 본인 인증 및 개인정보 제공을 즉시 중단하세요.",
+          "문자메시지에 포함된 번호나 연결 경로로 연락하지 말고, 해당 카드사 공식 고객센터를 통해 직접 결제 사실을 확인하세요.",
+          "금융 피해가 발생했거나 의심되는 경우 경찰청(112)이나 금융감독원(1332)에 신고하세요."
+        ]
+      }
     },
     {
       "id": "18",
       "input_text": "도서관에서 빌린 책의 반납일은 이번 주 금요일입니다.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 37.727221433s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '37s'}]}}"
+      "expected_risk_level": "LOW",
+      "predicted_risk_level": "LOW",
+      "expected_scam_type": "해당 없음",
+      "predicted_scam_type": "해당 없음",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "LOW",
+        "score": 0,
+        "scam_type": "해당 없음",
+        "reason": "입력된 문장은 도서관 책 반납일을 안내하는 일반적인 문장으로, 금전 요구, 개인정보 입력 유도, 의심스러운 URL 등 피싱과 관련된 위험 요소가 전혀 존재하지 않습니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 0,
+        "sender_reliability_score": 0,
+        "urgency_score": 0,
+        "recommended_actions": [
+          "도서 대출 및 반납 일정은 해당 도서관의 공식 홈페이지나 앱을 통해 직접 확인하세요.",
+          "일반적인 도서관 안내 문장이므로 안내된 반납 일정에 맞춰 이용하시면 됩니다."
+        ]
+      }
     },
     {
       "id": "19",
       "input_text": "회원님의 포인트가 이번 달 말 소멸될 예정입니다. 사용 가능한 혜택을 확인하세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 37.607850221s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '37s'}]}}"
+      "expected_risk_level": "MEDIUM",
+      "predicted_risk_level": "LOW",
+      "expected_scam_type": "기타피싱",
+      "predicted_scam_type": "해당 없음",
+      "risk_correct": false,
+      "type_correct": false,
+      "all_correct": false,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "LOW",
+        "score": 10,
+        "scam_type": "해당 없음",
+        "reason": "입력된 문장은 회원 포인트 소멸과 혜택 확인을 안내하는 일반적인 문구로, URL, 금전 요구, 개인정보 요구 등 피싱으로 판단할 수 있는 위험 요소가 확인되지 않습니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 10,
+        "sender_reliability_score": 20,
+        "urgency_score": 15,
+        "recommended_actions": [
+          "포인트 및 혜택 내역은 해당 서비스의 공식 앱이나 홈페이지를 통해 직접 확인하세요.",
+          "출처가 불명확한 수신 문자에 대해서는 기본 주의사항을 준수하세요."
+        ]
+      }
     },
     {
       "id": "20",
       "input_text": "금융사고 예방을 위해 상담원이 안내한 원격지원 프로그램을 실행하세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 37.490692853s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '37s'}]}}"
+      "expected_risk_level": "HIGH",
+      "predicted_risk_level": "HIGH",
+      "expected_scam_type": "악성앱설치유도",
+      "predicted_scam_type": "악성앱설치유도",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "HIGH",
+        "score": 85,
+        "scam_type": "악성앱설치유도",
+        "reason": "금융사고 예방을 명목으로 상담원이 안내한 원격지원 프로그램 실행을 요구하고 있습니다. 원격제어 프로그램 실행 요구는 피해자의 기기를 제어하여 금융 정보나 개인정보를 탈취하는 전형적인 피싱 수법입니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 85,
+        "sender_reliability_score": 80,
+        "urgency_score": 60,
+        "recommended_actions": [
+          "안내된 원격지원 프로그램이나 앱을 절대 실행하거나 설치하지 마세요.",
+          "해당 금융사의 공식 대표번호로 직접 연락하여 사실 여부를 확인하세요.",
+          "이미 프로그램을 실행한 경우 즉시 비행기 탑승 모드를 켜거나 Wi-Fi/데이터를 차단하고 경찰청(112) 또는 금융감독원(1332)에 신고하세요."
+        ]
+      }
     },
     {
       "id": "21",
       "input_text": "국세청입니다. 미납 세금이 확인되었습니다. 오늘까지 납부하지 않으면 재산이 압류됩니다.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 37.37508873s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '37s'}]}}"
+      "expected_risk_level": "HIGH",
+      "predicted_risk_level": "HIGH",
+      "expected_scam_type": "기관사칭",
+      "predicted_scam_type": "기관사칭",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "HIGH",
+        "score": 85,
+        "scam_type": "기관사칭",
+        "reason": "국세청이라는 공공기관을 사칭하여 미납 세금 납부를 요구하고, 당일 납부하지 않을 경우 재산을 압류하겠다는 협박성 표현으로 불안감을 조성하는 명확한 피싱 정황이 확인됩니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 90,
+        "sender_reliability_score": 85,
+        "urgency_score": 90,
+        "recommended_actions": [
+          "문자를 통한 납부 요구나 송금 요청에 응하지 마세요.",
+          "국세청 세무상담센터(126)나 공식 홈택스 홈페이지를 통해 직접 미납 세금 여부를 확인하세요.",
+          "의심스러운 상황이 지속되거나 피해가 발생한 경우 경찰청(112)이나 금융감독원(1332)에 신고하세요."
+        ]
+      }
     },
     {
       "id": "22",
       "input_text": "오늘 수업은 강의실 302호에서 진행됩니다.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 37.257836469s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '37s'}]}}"
+      "expected_risk_level": "LOW",
+      "predicted_risk_level": "LOW",
+      "expected_scam_type": "해당 없음",
+      "predicted_scam_type": "해당 없음",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "LOW",
+        "score": 0,
+        "scam_type": "해당 없음",
+        "reason": "해당 문장은 강의실 위치를 안내하는 일반적인 일상 안내 문장으로, 금전 요구, 개인정보 요구, 출처 불분명한 URL 등 어떠한 피싱 정황도 확인되지 않습니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 0,
+        "sender_reliability_score": 0,
+        "urgency_score": 0,
+        "recommended_actions": [
+          "일반적인 학사 및 수업 안내 문장이므로 안심하고 확인하세요.",
+          "수업 관련 추가 문의가 필요한 경우 담당 교수나 학과 사무실로 확인하세요."
+        ]
+      }
     },
     {
       "id": "23",
       "input_text": "배송 기사입니다. 수취인 연락이 되지 않아 물품이 반송될 수 있습니다. 배송 정보를 확인하세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 37.135515538s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '37s'}]}}"
+      "expected_risk_level": "MEDIUM",
+      "predicted_risk_level": "MEDIUM",
+      "expected_scam_type": "택배배송사칭",
+      "predicted_scam_type": "택배배송사칭",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "MEDIUM",
+        "score": 52,
+        "scam_type": "택배배송사칭",
+        "reason": "실제 URL이나 개인정보 요구는 직접적으로 드러나지 않았으나, 배송 기사를 사칭하고 물품 반송 가능성을 언급하며 배송 정보 확인 행동을 유도하는 전형적인 피싱 패턴이 확인됩니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 55,
+        "sender_reliability_score": 50,
+        "urgency_score": 45,
+        "recommended_actions": [
+          "해당 택배사의 공식 앱이나 공식 고객센터를 통해 실제 배송 상태 및 반송 여부를 확인하세요.",
+          "출처가 확실하지 않은 상태에서 추가적인 개인정보 요구나 링크 접속 요청이 올 경우 주의하세요.",
+          "발신자 신원이 확인되지 않은 문자의 지시에 따라 비밀번호나 인증정보를 입력하지 마세요."
+        ]
+      }
     },
     {
       "id": "24",
       "input_text": "엄마 나 번호 바뀌었어. 지금 병원비가 부족하니까 이 계좌로 먼저 보내줘.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 37.016426151s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '37s'}]}}"
+      "expected_risk_level": "HIGH",
+      "predicted_risk_level": "HIGH",
+      "expected_scam_type": "가족지인사칭",
+      "predicted_scam_type": "가족지인사칭",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "HIGH",
+        "score": 95,
+        "scam_type": "가족지인사칭",
+        "reason": "자녀를 사칭하여 번호가 바뀌었다고 알린 후, 병원비 명목으로 긴급하게 계좌 이체를 요구하는 전형적인 메신저 피싱 문장입니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 95,
+        "sender_reliability_score": 90,
+        "urgency_score": 85,
+        "recommended_actions": [
+          "기존에 알고 있던 자녀의 기존 전화번호로 직접 전화하여 사실을 확인하세요.",
+          "문자에 제시된 계좌로 돈을 송금하지 마세요.",
+          "피해가 발생한 경우 즉시 경찰청(112)이나 금융회사 콜센터에 신고하여 지급정지를 요청하세요."
+        ]
+      }
     },
     {
       "id": "25",
       "input_text": "우리은행입니다. 정기예금 만기일이 다음 주로 예정되어 있습니다.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 36.886899541s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '36s'}]}}"
+      "expected_risk_level": "LOW",
+      "predicted_risk_level": "LOW",
+      "expected_scam_type": "해당 없음",
+      "predicted_scam_type": "해당 없음",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "LOW",
+        "score": 5,
+        "scam_type": "해당 없음",
+        "reason": "해당 문장은 금전 요구나 개인정보 입력 요구, 의심스러운 URL 링크가 전혀 없는 단순한 은행 정기예금 만기 안내 문장으로 피싱 정황이 발견되지 않았습니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 5,
+        "sender_reliability_score": 10,
+        "urgency_score": 5,
+        "recommended_actions": [
+          "필요 시 우리은행 공식 앱이나 대표 고객센터를 통해 만기 일정 및 상품 정보를 확인하세요.",
+          "출처가 불분명한 문자에서 링크나 전화번호를 통한 금융 정보 요구가 있을 경우 주의하세요."
+        ]
+      }
     },
     {
       "id": "26",
       "input_text": "정부지원 대출 대상자로 선정되었습니다. 수수료 15만원을 입금하면 당일 지급됩니다.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 36.777381699s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '36s'}]}}"
+      "expected_risk_level": "HIGH",
+      "predicted_risk_level": null,
+      "expected_scam_type": "대출사기",
+      "predicted_scam_type": null,
+      "risk_correct": false,
+      "type_correct": false,
+      "all_correct": false,
+      "status": "failed",
+      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash\\nPlease retry in 30.104512021s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.6-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '30s'}]}}",
+      "analysis": null
     },
     {
       "id": "27",
       "input_text": "온라인 쇼핑몰에서 고액 결제가 접수되었습니다. 본인이 아니라면 카드 정보를 확인하세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 36.659518188s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '36s'}]}}"
+      "expected_risk_level": "HIGH",
+      "predicted_risk_level": "HIGH",
+      "expected_scam_type": "결제사칭",
+      "predicted_scam_type": "결제사칭",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "HIGH",
+        "score": 85,
+        "scam_type": "결제사칭",
+        "reason": "온라인 쇼핑몰 결제 접수를 핑계로 불안감을 조성하고 본인이 아닐 경우 카드 정보를 확인하도록 유도하여 민감정보를 요구하는 전형적인 결제 사칭 문장입니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 80,
+        "sender_reliability_score": 75,
+        "urgency_score": 65,
+        "recommended_actions": [
+          "카드 정보 등 민감한 개인정보를 절대로 입력하거나 전달하지 마세요.",
+          "해당 쇼핑몰이나 카드사의 공식 고객센터로 직접 문의하여 실제 결제 내역을 확인하세요.",
+          "이미 카드 정보가 노출된 경우 즉시 해당 카드사에 승인 정지를 요청하고 경찰청(112) 또는 금융감독원(1332)에 신고하세요."
+        ]
+      }
     },
     {
       "id": "28",
       "input_text": "예약하신 치과 진료는 내일 오전 11시입니다.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 36.540301956s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '36s'}]}}"
+      "expected_risk_level": "LOW",
+      "predicted_risk_level": null,
+      "expected_scam_type": "해당 없음",
+      "predicted_scam_type": null,
+      "risk_correct": false,
+      "type_correct": false,
+      "all_correct": false,
+      "status": "failed",
+      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash\\nPlease retry in 14.659444232s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.6-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '14s'}]}}",
+      "analysis": null
     },
     {
       "id": "29",
       "input_text": "설문조사 참여 고객에게 모바일 상품을 제공합니다. 참여 내용을 확인해주세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 36.375651259s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '36s'}]}}"
+      "expected_risk_level": "MEDIUM",
+      "predicted_risk_level": "LOW",
+      "expected_scam_type": "기타피싱",
+      "predicted_scam_type": "해당 없음",
+      "risk_correct": false,
+      "type_correct": false,
+      "all_correct": false,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "LOW",
+        "score": 10,
+        "scam_type": "해당 없음",
+        "reason": "설문조사 참여에 따른 모바일 상품 제공을 안내하는 문장으로, 금전 요구나 개인정보 입력 유도, URL 주소, 기관 사칭 등 피싱으로 판단할 만한 위험 요소가 확인되지 않습니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 10,
+        "sender_reliability_score": 20,
+        "urgency_score": 0,
+        "recommended_actions": [
+          "이벤트 안내 수신 시 해당 기업의 공식 앱이나 홈페이지를 통해 관련 내용을 확인하세요.",
+          "향후 출처가 불분명한 URL 접속이나 개인정보 요구가 있을 경우 주의하세요."
+        ]
+      }
     },
     {
       "id": "30",
       "input_text": "휴대전화에 악성코드가 발견되었습니다. 첨부된 보안 앱을 설치해 검사하세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 36.091188678s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '36s'}]}}"
+      "expected_risk_level": "HIGH",
+      "predicted_risk_level": "HIGH",
+      "expected_scam_type": "악성앱설치유도",
+      "predicted_scam_type": "악성앱설치유도",
+      "risk_correct": true,
+      "type_correct": true,
+      "all_correct": true,
+      "status": "success",
+      "error": null,
+      "analysis": {
+        "risk_level": "HIGH",
+        "score": 88,
+        "scam_type": "악성앱설치유도",
+        "reason": "휴대전화에 악성코드가 발견되었다며 불안감을 조성하고 출처가 확인되지 않은 첨부 보안 앱 설치를 유도하는 전형적인 피싱 문장입니다.",
+        "url_risk_score": 0,
+        "language_pattern_score": 85,
+        "sender_reliability_score": 80,
+        "urgency_score": 75,
+        "recommended_actions": [
+          "문자에 첨부된 앱이나 파일을 절대로 설치하지 마세요.",
+          "출처가 불분명한 앱을 이미 설치했다면 즉시 삭제하고 모바일 백신으로 검사하세요.",
+          "공식 스토어(구글 플레이스토어, 애플 앱스토어)를 통해서만 정식 보안 앱을 다운로드하세요."
+        ]
+      }
     },
     {
       "id": "31",
       "input_text": "법원 등기 담당자입니다. 소송 서류가 발송되었으니 사건번호를 확인하세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 35.962628693s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '35s'}]}}"
+      "expected_risk_level": "MEDIUM",
+      "predicted_risk_level": null,
+      "expected_scam_type": "기관사칭",
+      "predicted_scam_type": null,
+      "risk_correct": false,
+      "type_correct": false,
+      "all_correct": false,
+      "status": "failed",
+      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash\\nPlease retry in 37.335449377s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.6-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '37s'}]}}",
+      "analysis": null
     },
     {
       "id": "32",
       "input_text": "이번 달 관리비가 자동이체로 정상 납부되었습니다.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 35.790887258s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '35s'}]}}"
+      "expected_risk_level": "LOW",
+      "predicted_risk_level": null,
+      "expected_scam_type": "해당 없음",
+      "predicted_scam_type": null,
+      "risk_correct": false,
+      "type_correct": false,
+      "all_correct": false,
+      "status": "failed",
+      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash\\nPlease retry in 21.50900135s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.6-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '21s'}]}}",
+      "analysis": null
     },
     {
       "id": "33",
       "input_text": "우편물이 주소 불명으로 보관 중입니다. 재배송을 위해 주소를 입력해주세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 35.504255581s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '35s'}]}}"
+      "expected_risk_level": "MEDIUM",
+      "predicted_risk_level": null,
+      "expected_scam_type": "택배배송사칭",
+      "predicted_scam_type": null,
+      "risk_correct": false,
+      "type_correct": false,
+      "all_correct": false,
+      "status": "failed",
+      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash\\nPlease retry in 6.067647159s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.6-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '6s'}]}}",
+      "analysis": null
     },
     {
       "id": "34",
       "input_text": "친구야 지금 계좌가 정지돼서 그러는데 대신 결제하고 내일 갚아도 될까?",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 35.396596291s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '35s'}]}}"
+      "error": "API 요청 제한으로 분석에 실패했습니다."
     },
     {
       "id": "35",
       "input_text": "신한카드입니다. 신청하신 카드의 배송이 시작되었습니다.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 35.278105834s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '35s'}]}}"
+      "error": "API 요청 제한으로 분석에 실패했습니다."
     },
     {
       "id": "36",
       "input_text": "대출 한도가 승인되었습니다. 계좌 확인을 위한 예치금을 먼저 보내주세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 35.175220312s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '35s'}]}}"
+      "error": "API 요청 제한으로 분석에 실패했습니다."
     },
     {
       "id": "37",
       "input_text": "새벽 시간에 해외 사이트 결제가 시도되었습니다. 취소를 원하면 인증번호를 입력하세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 35.053954043s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '35s'}]}}"
+      "error": "API 요청 제한으로 분석에 실패했습니다."
     },
     {
       "id": "38",
       "input_text": "회사 워크숍 일정이 다음 달 첫째 주로 변경되었습니다.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 34.933975174s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '34s'}]}}"
+      "error": "API 요청 제한으로 분석에 실패했습니다."
     },
     {
       "id": "39",
       "input_text": "신규 회원 감사 쿠폰이 발급되었습니다. 공식 앱의 쿠폰함에서 확인하세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 34.814129512s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '34s'}]}}"
+      "error": "API 요청 제한으로 분석에 실패했습니다."
     },
     {
       "id": "40",
       "input_text": "고객님의 계좌 점검을 위해 원격제어 앱 접근 권한을 허용해주세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 34.691703521s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '34s'}]}}"
+      "error": "API 요청 제한으로 분석에 실패했습니다."
     },
     {
       "id": "41",
       "input_text": "금융감독원입니다. 예금 보호 조치를 위해 자금을 지정 계좌로 이동하세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 34.574232122s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '34s'}]}}"
+      "error": "API 요청 제한으로 분석에 실패했습니다."
     },
     {
       "id": "42",
       "input_text": "주문하신 도서가 서점에 입고되었습니다. 방문 수령이 가능합니다.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 34.446417458s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '34s'}]}}"
+      "error": "API 요청 제한으로 분석에 실패했습니다."
     },
     {
       "id": "43",
       "input_text": "배송비 2,500원이 결제되지 않아 상품이 출고되지 않았습니다. 납부 정보를 확인하세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 34.276761163s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '34s'}]}}"
+      "expected_risk_level": "MEDIUM",
+      "predicted_risk_level": "MEDIUM",
+      "risk_correct": true,
+      "expected_scam_type": "택배배송사칭",
+      "predicted_scam_type": "택배배송사칭",
+      "scam_type_correct": true,
+      "score": 55,
+      "reason": "배송비 미납을 이유로 상품 출고가 중단되었다며 납부 정보 확인을 유도하는 전형적인 택배 배송 관련 수법의 문장이나, 문장 내에 직접적인 URL이나 민감정보/금전 요구가 명시되어 있지 않아 주의가 필요한 MEDIUM 단계로 판단했습니다."
     },
     {
       "id": "44",
       "input_text": "딸인데 휴대폰을 잃어버렸어. 새 번호 등록하려면 인증번호가 필요하니 알려줘.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 33.984133361s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '33s'}]}}"
+      "error": "API 요청 제한으로 분석에 실패했습니다."
     },
     {
       "id": "45",
       "input_text": "농협은행입니다. 고객님의 통장 재발급 신청이 정상 접수되었습니다.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 33.868998876s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '33s'}]}}"
+      "error": "API 요청 제한으로 분석에 실패했습니다."
     },
     {
       "id": "46",
       "input_text": "연체 기록이 있어도 대출 가능합니다. 보증보험료를 입금하면 바로 처리됩니다.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 33.692813678s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '33s'}]}}"
+      "error": "API 요청 제한으로 분석에 실패했습니다."
     },
     {
       "id": "47",
       "input_text": "정기결제 서비스에서 49만원이 승인되었습니다. 취소하려면 계정에 로그인하세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 33.401647047s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '33s'}]}}"
+      "error": "API 요청 제한으로 분석에 실패했습니다."
     },
     {
       "id": "48",
       "input_text": "이번 주 동아리 모임은 취소되었습니다.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 33.291772844s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '33s'}]}}"
+      "error": "API 요청 제한으로 분석에 실패했습니다."
     },
     {
       "id": "49",
       "input_text": "회원님의 계정이 장기간 사용되지 않아 일부 기능이 제한될 수 있습니다.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 33.168760234s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '33s'}]}}"
+      "error": "API 요청 제한으로 분석에 실패했습니다."
     },
     {
       "id": "50",
       "input_text": "은행 보안팀입니다. 계좌 복구를 위해 화면 공유 앱을 설치하고 접속번호를 알려주세요.",
-      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 33.049409712s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '33s'}]}}"
+      "error": "API 요청 제한으로 분석에 실패했습니다."
     }
   ]
 }

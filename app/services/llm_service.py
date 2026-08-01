@@ -306,9 +306,9 @@ LOW:
 """
 
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=prompt
-    )
+    model="gemini-3.6-flash",
+    contents=prompt
+)
 
     if response.text is None:
         raise Exception("Gemini 응답이 비어 있습니다.")
